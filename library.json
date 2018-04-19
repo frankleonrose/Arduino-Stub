@@ -1,0 +1,21 @@
+{
+  "name": "Arduino-Stub",
+  "keywords": "test, native, arduino",
+  "description": "Arduino Library for building native tests",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/frankleonrose/Arduino-Stub.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Frank Leon Rose",
+      "email": "frankleonrose@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "version": "0.1.0",
+  "frameworks": "arduino",
+  "platforms": "*"
+}
