@@ -12,9 +12,10 @@ uint32_t micros() { return 0; };
 void interrupts() {};
 void noInterrupts() {};
 
+int pins[50] = {0};
 void pinMode(uint8_t pin, uint8_t mode) {};
-void digitalWrite(uint8_t pin, uint8_t val) {};
-int digitalRead(uint8_t pin) { return 0; };
+void digitalWrite(uint8_t pin, uint8_t val) { pins[pin] = val; };
+int digitalRead(uint8_t pin) { return pins[pin]; };
 
 long nativeRandom(long max) {
   return max / 2;
