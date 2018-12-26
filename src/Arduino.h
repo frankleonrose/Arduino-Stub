@@ -65,7 +65,7 @@ long nativeRandom(long max);
 void pinMode(uint8_t pin, uint8_t mode);
 void digitalWrite(uint8_t pin, uint8_t val);
 int digitalRead(uint8_t pin);
-int analogRead(int);
+int analogRead(uint8_t);
 void analogReadResolution(int);
 
 #ifdef __cplusplus
