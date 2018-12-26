@@ -68,4 +68,4 @@ extern MockSerial Serial;
 extern MockSerial Serial1;
 
 #endif
-#endif // UNIT_TEST
+#endif // PLATFORM_NATIVE

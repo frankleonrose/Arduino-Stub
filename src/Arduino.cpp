@@ -16,6 +16,8 @@ int pins[50] = {0};
 void pinMode(uint8_t pin, uint8_t mode) {};
 void digitalWrite(uint8_t pin, uint8_t val) { pins[pin] = val; };
 int digitalRead(uint8_t pin) { return pins[pin]; };
+int analogRead(uint8_t pin) { return 0; }
+void analogReadResolution(int) {}
 
 long nativeRandom(long max) {
   return max / 2;
@@ -46,4 +48,4 @@ size_t Print::print(double value, int base) {
   return printf("%lf", value);
 }
 
-#endif // UNIT_TEST
+#endif // PLATFORM_NATIVE

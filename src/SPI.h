@@ -169,4 +169,4 @@ private:
 extern SPIClass SPI;
 
 #endif
-#endif // UNIT_TEST
+#endif // PLATFORM_NATIVE

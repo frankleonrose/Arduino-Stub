@@ -25,6 +25,13 @@ class __FlashStringHelper;
 
 #define LED_BUILTIN 13
 
+#define A0 100
+#define A1 (A0+1)
+#define A2 (A0+2)
+#define A3 (A0+3)
+#define A4 (A0+4)
+#define A5 (A0+5)
+
 #define LOW   0
 #define HIGH  1
 
@@ -58,6 +65,8 @@ long nativeRandom(long max);
 void pinMode(uint8_t pin, uint8_t mode);
 void digitalWrite(uint8_t pin, uint8_t val);
 int digitalRead(uint8_t pin);
+int analogRead(int);
+void analogReadResolution(int);
 
 #ifdef __cplusplus
 }
@@ -75,12 +84,5 @@ template<class T> T constrain(const T value, const T min, const T max) {
   }
 }
 
-// #ifndef UNIT_TEST
-// float fmod(float numer, float denom) throw() {
-//   return numer;
-//   // return numer - (ftrunc(numer / denom) * denom);
-// }
-// #endif
-
 #endif // ARDUINO_H
-#endif // UNIT_TEST
+#endif // PLATFORM_NATIVE

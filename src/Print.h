@@ -98,4 +98,4 @@ class Print
 };
 
 #endif
-#endif // UNIT_TEST
+#endif // PLATFORM_NATIVE
