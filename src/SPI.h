@@ -11,7 +11,7 @@
  * published by the Free Software Foundation.
  */
 
-#ifdef UNIT_TEST
+#if defined(PLATFORM_NATIVE)
 
 #ifndef _SPI_H_INCLUDED
 #define _SPI_H_INCLUDED

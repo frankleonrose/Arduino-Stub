@@ -1,4 +1,4 @@
-#ifdef UNIT_TEST
+#if defined(PLATFORM_NATIVE)
 
 #ifndef STREAM_H
 #define STREAM_H

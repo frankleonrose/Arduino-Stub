@@ -1,4 +1,4 @@
-#ifdef UNIT_TEST
+#if defined(PLATFORM_NATIVE)
 
 #ifndef ARDUINO_H
 #define ARDUINO_H
@@ -30,6 +30,13 @@ class __FlashStringHelper;
 
 #define INPUT   0
 #define OUTPUT  1
+
+#define PROGMEM
+#define PGM_P const char*
+#define strncpy_P strncpy
+#define strlen_P strlen
+#define pgm_read_byte(p) (*((uint8_t*)(p)))
+#define pgm_read_dword(p) (*((uint32_t*)(p)))
 
 typedef unsigned char   boolean;
 typedef unsigned char   uint8_t;
