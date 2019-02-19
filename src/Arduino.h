@@ -49,6 +49,7 @@ typedef unsigned char   boolean;
 typedef unsigned char   uint8_t;
 typedef unsigned short  uint16_t;
 typedef unsigned int    uint32_t;
+typedef uint8_t byte;
 
 #ifdef __cplusplus
 extern "C" {
@@ -83,6 +84,9 @@ template<class T> T constrain(const T value, const T min, const T max) {
     return value;
   }
 }
+
+// Watchdog timer reset
+void wdt_reset();
 
 #endif // ARDUINO_H
 #endif // PLATFORM_NATIVE
