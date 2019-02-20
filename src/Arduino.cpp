@@ -48,4 +48,6 @@ size_t Print::print(double value, int base) {
   return printf("%lf", value);
 }
 
+void wdt_reset() {}
+
 #endif // PLATFORM_NATIVE
