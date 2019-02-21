@@ -1,6 +1,7 @@
 #if defined(PLATFORM_NATIVE)
 
 #include "Arduino.h"
+#include <assert.h>
 
 MockSerial Serial;
 MockSerial Serial1;
@@ -12,11 +13,32 @@ uint32_t micros() { return 0; };
 void interrupts() {};
 void noInterrupts() {};
 
-int pins[50] = {0};
-void pinMode(uint8_t pin, uint8_t mode) {};
-void digitalWrite(uint8_t pin, uint8_t val) { pins[pin] = val; };
-int digitalRead(uint8_t pin) { return pins[pin]; };
-int analogRead(uint8_t pin) { return 0; }
+int pins[ARDUINO_STUB_MAX_PINS];
+int pinModes[ARDUINO_STUB_MAX_PINS];
+void pinMode(uint8_t pin, uint8_t mode) {
+  pinModes[pin] = mode;
+};
+void digitalWrite(uint8_t pin, uint8_t val) {
+  // printf("digitalWrite: %d, %d\n", (int)pin, (int)val);
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  pins[pin] = val;
+};
+int digitalRead(uint8_t pin) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  return pins[pin];
+};
+void mockDigitalRead(uint8_t pin, bool value) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  pins[pin] = value ? HIGH : LOW;
+}
+int analogRead(uint8_t pin) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  return pins[pin];
+}
+void mockAnalogRead(uint8_t pin, int value) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  pins[pin] = value;
+}
 void analogReadResolution(int) {}
 
 long nativeRandom(long max) {

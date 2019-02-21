@@ -24,11 +24,16 @@ class Stream : public Print {
     snprintf(buffer, sizeof(buffer), "%u", u);
     print(buffer);
   };
-  // void print(const char *s) {
-  //   for (; *s; ++s) {
-  //     write(*s);
-  //   }
-  // };
+  void print(float flt) {
+    char buffer[100];
+    snprintf(buffer, sizeof(buffer), "%f", flt);
+    // print(buffer);
+  };
+  void print(double dbl) {
+    char buffer[100];
+    snprintf(buffer, sizeof(buffer), "%lf", dbl);
+    // print(buffer);
+  };
   void print(char const *s) {
     for (; *s; ++s) {
       write(*s);
@@ -49,7 +54,7 @@ class Stream : public Print {
 class MockSerial : public Stream {
   public:
     virtual size_t write(uint8_t c) {
-      printf("%c", c);
+      printf("%c", c); // Ultimately writes are sent here to print to stdout
       return 1;
     }
     virtual size_t write(const uint8_t *buffer, size_t size) {

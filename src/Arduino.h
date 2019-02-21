@@ -25,6 +25,7 @@ class __FlashStringHelper;
 
 #define LED_BUILTIN 13
 
+#define ARDUINO_STUB_MAX_PINS 110
 #define A0 100
 #define A1 (A0+1)
 #define A2 (A0+2)
@@ -68,6 +69,8 @@ void digitalWrite(uint8_t pin, uint8_t val);
 int digitalRead(uint8_t pin);
 int analogRead(uint8_t);
 void analogReadResolution(int);
+void mockDigitalRead(uint8_t pin, bool value);
+void mockAnalogRead(uint8_t pin, int value);
 
 #ifdef __cplusplus
 }
