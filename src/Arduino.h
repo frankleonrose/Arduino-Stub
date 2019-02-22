@@ -71,6 +71,8 @@ int analogRead(uint8_t);
 void analogReadResolution(int);
 void mockDigitalRead(uint8_t pin, bool value);
 void mockAnalogRead(uint8_t pin, int value);
+typedef void (*digitalWriteHookFn)(uint8_t pin, uint8_t val);
+void hookDigitalWrite(digitalWriteHookFn fn);
 
 #ifdef __cplusplus
 }

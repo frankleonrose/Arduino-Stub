@@ -18,11 +18,18 @@ int pinModes[ARDUINO_STUB_MAX_PINS];
 void pinMode(uint8_t pin, uint8_t mode) {
   pinModes[pin] = mode;
 };
+static digitalWriteHookFn digitalWriteHook;
 void digitalWrite(uint8_t pin, uint8_t val) {
   // printf("digitalWrite: %d, %d\n", (int)pin, (int)val);
   assert(pin<ARDUINO_STUB_MAX_PINS);
   pins[pin] = val;
+  if (digitalWriteHook!=NULL) {
+    digitalWriteHook(pin, val);
+  }
 };
+void hookDigitalWrite(digitalWriteHookFn fn) {
+  digitalWriteHook = fn;
+}
 int digitalRead(uint8_t pin) {
   assert(pin<ARDUINO_STUB_MAX_PINS);
   return pins[pin];
