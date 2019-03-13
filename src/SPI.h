@@ -11,8 +11,6 @@
  * published by the Free Software Foundation.
  */
 
-#if defined(PLATFORM_NATIVE)
-
 #ifndef _SPI_H_INCLUDED
 #define _SPI_H_INCLUDED
 
@@ -169,4 +167,3 @@ private:
 extern SPIClass SPI;
 
 #endif
-#endif // PLATFORM_NATIVE

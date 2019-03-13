@@ -1,9 +1,12 @@
-#if defined(PLATFORM_NATIVE)
-
 #ifndef STREAM_H
 #define STREAM_H
 
 #include "Print.h"
+
+#if defined(AVR)
+size_t  snprintf(char *buffer, const size_t size, const char *fmt, ...);
+size_t  printf(const char *fmt, ...);
+#endif
 
 class Stream : public Print {
   public:
@@ -73,4 +76,3 @@ extern MockSerial Serial;
 extern MockSerial Serial1;
 
 #endif
-#endif // PLATFORM_NATIVE

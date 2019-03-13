@@ -1,15 +1,17 @@
-#if defined(PLATFORM_NATIVE)
-
 #ifndef ARDUINO_H
 #define ARDUINO_H
 
 // Mock Arduino.h used when compiling native platform tests.
 
+#include <string.h>
+#if defined(AVR)
+#include <stdint.h>
+#else
 #include <string>
 #include <cstdint>
 #include <cstring>
-#include <string.h>
 #include <cstdio>
+#endif
 
 #define String std::string
 
@@ -48,8 +50,10 @@ class __FlashStringHelper;
 
 typedef unsigned char   boolean;
 typedef unsigned char   uint8_t;
+#if !defined(AVR)
 typedef unsigned short  uint16_t;
 typedef unsigned int    uint32_t;
+#endif
 typedef uint8_t byte;
 
 #ifdef __cplusplus
@@ -94,4 +98,3 @@ template<class T> T constrain(const T value, const T min, const T max) {
 void wdt_reset();
 
 #endif // ARDUINO_H
-#endif // PLATFORM_NATIVE

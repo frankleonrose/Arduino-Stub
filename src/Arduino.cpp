@@ -1,5 +1,3 @@
-#if defined(PLATFORM_NATIVE)
-
 #include "Arduino.h"
 #include <assert.h>
 
@@ -52,6 +50,17 @@ long nativeRandom(long max) {
   return max / 2;
 }
 
+#if defined(AVR)
+size_t printf(const char *fmt, ...) {
+  return 0;
+}
+
+size_t  snprintf(char *buffer, const size_t size, const char *fmt, ...) {
+  buffer[0] = 0;
+  return 0;
+}
+#endif
+
 size_t Print::print(const char value[]) {
   return printf("%s", value);
 }
@@ -78,5 +87,3 @@ size_t Print::print(double value, int base) {
 }
 
 void wdt_reset() {}
-
-#endif // PLATFORM_NATIVE
