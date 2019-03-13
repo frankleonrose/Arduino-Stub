@@ -68,6 +68,7 @@ class MockSerial : public Stream {
     }
     uint8_t dtr() { return 1; }
     size_t available() { return 0; }
+    void end() {}
 };
 
 typedef MockSerial HardwareSerial;
