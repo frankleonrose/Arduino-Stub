@@ -11,8 +11,6 @@
  * published by the Free Software Foundation.
  */
 
-#ifdef UNIT_TEST
-
 #ifndef _SPI_H_INCLUDED
 #define _SPI_H_INCLUDED
 
@@ -169,4 +167,3 @@ private:
 extern SPIClass SPI;
 
 #endif
-#endif // UNIT_TEST

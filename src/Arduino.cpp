@@ -1,6 +1,5 @@
-#ifdef UNIT_TEST
-
 #include "Arduino.h"
+#include <assert.h>
 
 MockSerial Serial;
 MockSerial Serial1;
@@ -12,13 +11,55 @@ uint32_t micros() { return 0; };
 void interrupts() {};
 void noInterrupts() {};
 
-void pinMode(uint8_t pin, uint8_t mode) {};
-void digitalWrite(uint8_t pin, uint8_t val) {};
-int digitalRead(uint8_t pin) { return 0; };
+int pins[ARDUINO_STUB_MAX_PINS];
+int pinModes[ARDUINO_STUB_MAX_PINS];
+void pinMode(uint8_t pin, uint8_t mode) {
+  pinModes[pin] = mode;
+};
+static digitalWriteHookFn digitalWriteHook;
+void digitalWrite(uint8_t pin, uint8_t val) {
+  // printf("digitalWrite: %d, %d\n", (int)pin, (int)val);
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  pins[pin] = val;
+  if (digitalWriteHook!=NULL) {
+    digitalWriteHook(pin, val);
+  }
+};
+void hookDigitalWrite(digitalWriteHookFn fn) {
+  digitalWriteHook = fn;
+}
+int digitalRead(uint8_t pin) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  return pins[pin];
+};
+void mockDigitalRead(uint8_t pin, bool value) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  pins[pin] = value ? HIGH : LOW;
+}
+int analogRead(uint8_t pin) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  return pins[pin];
+}
+void mockAnalogRead(uint8_t pin, int value) {
+  assert(pin<ARDUINO_STUB_MAX_PINS);
+  pins[pin] = value;
+}
+void analogReadResolution(int) {}
 
 long nativeRandom(long max) {
   return max / 2;
 }
+
+#if defined(AVR)
+size_t printf(const char *fmt, ...) {
+  return 0;
+}
+
+size_t  snprintf(char *buffer, const size_t size, const char *fmt, ...) {
+  buffer[0] = 0;
+  return 0;
+}
+#endif
 
 size_t Print::print(const char value[]) {
   return printf("%s", value);
@@ -45,4 +86,4 @@ size_t Print::print(double value, int base) {
   return printf("%lf", value);
 }
 
-#endif // UNIT_TEST
+void wdt_reset() {}
